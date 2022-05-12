@@ -1,0 +1,10 @@
+
+server:
+  port: 9900
+spring:
+  datasource:
+    #    url: jdbc:mysql://121.37.185.192:3306/vhr?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/flowable?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: zhangling03
