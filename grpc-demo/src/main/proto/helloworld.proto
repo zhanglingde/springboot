@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// 生成多个 java 类（false 内部类方式）
+option java_multiple_files = true;
+// 包名
+option java_package = "com.ling.helloworld";
+// java 文件名
+option java_outer_classname = "HelloWorldProto";
+
+//option objc_class_prefix = "HLW";
+
+// 以 option 设置的包名为准
+package helloworld;
+
+// 服务器提供一个服务
+service HelloWorldService{
+  rpc SayHello(HelloRequest) returns (HelloResponse){}
+}
+
+// 请求对象
+message HelloRequest{
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+
+}
+
+// 响应对象
+message HelloResponse{
+  string message = 1;
+}
