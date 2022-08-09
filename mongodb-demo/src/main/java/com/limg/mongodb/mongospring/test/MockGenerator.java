@@ -6,6 +6,7 @@ import com.limg.mongodb.mongospring.enums.*;
 import com.limg.mongodb.mongospring.util.RandomUtil;
 import com.limg.mongodb.mongospring.util.TimeTool;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import javax.annotation.Resource;
@@ -16,8 +17,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-public class MockGenerator extends MongodbApplicationTests {
+@SpringBootTest
+public class MockGenerator{
 
     @Resource
     private MongoTemplate mongoTemplate;

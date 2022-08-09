@@ -32,7 +32,9 @@ public class MongoDbTest {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
         // 1.创建链接
-        ConnectionString connString = new ConnectionString("mongodb://192.168.186.128:27017/ling");
+        ConnectionString connString = new ConnectionString("mongodb://root:123456@192.168.186.128:27017/ling");
+        // 无密码
+        // ConnectionString connString = new ConnectionString("mongodb://192.168.186.128:27017/ling");
         MongoClientSettings settings = MongoClientSettings.builder()
                 .codecRegistry(codecRegistry)
                 .applyConnectionString(connString)

@@ -1,7 +1,6 @@
-package com.limg.mongodb.mongospring.test;
+package com.limg.mongodb.test03;
 
 import cn.hutool.json.JSONUtil;
-import com.limg.mongodb.mongospring.entity.Bill;
 import com.limg.mongodb.mongospring.entity.Order;
 import com.limg.mongodb.mongospring.entity.OrderDetail;
 import com.limg.mongodb.mongospring.enums.*;
@@ -18,98 +17,60 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+
 @Slf4j
-public class MongoDbTest{
+@SpringBootTest
+public class MongoDbTest03 {
 
     @Resource
     private MongoTemplate mongoTemplate;
 
     @Test
     public void insert() {
-        Order order = getOrderStr();
-        Bill bill = new Bill();
-        bill.setRemark("remark");
-        bill.setContractNo("contractNo");
-        order.setBill(bill);
-
-        Order insert = mongoTemplate.insert(order);
-
+        Order insert = mongoTemplate.insert(getOrderStr());
         System.out.println(JSONUtil.toJsonStr(insert));
     }
-
     @Test
     public void update() {
         Query query = new Query();
-        query.addCriteria(Criteria.where("province").is("黑龙江"));
+        query.addCriteria(Criteria.where("province").is("安徽"));
         Update update = Update.update("shippingFee", 20);
         mongoTemplate.updateMulti(query, update, Order.class);
         System.out.println("修改成功");
     }
-
-    @Test
-    public void updateChild() {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("province").is("天津").and("orderDetailList.sku").is("SKU32049587"));
-        Update update = Update.update("orderDetailList.$.productName", "小米101");
-        mongoTemplate.updateMulti(query, update, Order.class);
-        System.out.println("修改成功");
-    }
-
-    @Test
-    public void updateChild2() {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("province").is("广西").and("bill.contractNo").is("contractNo"));
-        Update update = Update.update("bill.$.remark", "remark1");
-        mongoTemplate.updateMulti(query, update, Order.class);
-        System.out.println("修改成功");
-    }
-
     @Test
     public void delete() {
         Query query = new Query();
-        query.addCriteria(Criteria.where("province").is("黑龙江"));
-        mongoTemplate.remove(query, Order.class);
+        query.addCriteria(Criteria.where("province").is("安徽"));
+        mongoTemplate.remove(query,Order.class);
         System.out.println("删除成功");
     }
-
     @Test
-    public void find() {
+    public void find(){
         Query query = new Query();
         List<Order> orders = mongoTemplate.find(query, Order.class);
-        orders.forEach(item -> {
+        orders.forEach(item->{
             System.out.println(JSONUtil.toJsonStr(item));
         });
     }
-
     @Test
-    public void findByCondition() {
+    public void findByCondition(){
         Query query = new Query();
-        query.addCriteria(Criteria.where("province").is("海南"));
+        query.addCriteria(Criteria.where("province").is("安徽"));
         List<Order> orders = mongoTemplate.find(query, Order.class);
-        orders.forEach(item -> System.out.println(JSONUtil.toJsonStr(item)));
+        orders.forEach(item-> System.out.println(JSONUtil.toJsonStr(item)));
     }
 
-    @Test
-    public void findChildByCondition() {
-        Criteria cri = Criteria.where("bill.contractNo").is("contractNo");
-        Query query = new Query(cri);
-        List<Order> orders = mongoTemplate.find(query, Order.class, "orders");
-        orders.forEach(item -> System.out.println(JSONUtil.toJsonStr(item)));
-    }
-
-    public Order getOrderStr() {
-        // 1. 创建订单信息
+    public Order getOrderStr(){
         Order order = new Order();
         order.setProvince(AddressEnum.getRandomAddress());
         order.setShopName(ShopNameEnum.getRandomShopName());
         order.setPhone(NameAndPhone.getPhone());
-        order.setOrderDate(DateGenerator.randomDate("2020-01-01", "2020-11-31"));
+        order.setOrderDate(DateGenerator.randomDate("2020-01-01","2020-11-31"));
         order.setStatus(OrderStatusEnum.getRandomStatus());
         order.setWaybillNo("JD" + NumberGenerator.generate());
         order.setShippingFee(10);
 
-        // 2. 随机设置 1-5 个订单商品
         List<OrderDetail> orderDetailList = new ArrayList<>();
         int num = RandomUtil.getNum(1, 5);
         for (int i = 1; i <= num; i++) {
@@ -123,7 +84,7 @@ public class MongoDbTest{
             orderDetail.setCost((int) (product.getPrice() * 0.8));
             orderDetailList.add(orderDetail);
         }
-        order.setTotal(RandomUtil.getNum(2000, 10000));
+        order.setTotal(RandomUtil.getNum(2000,10000));
         order.setOrderDetailList(orderDetailList);
         return order;
     }

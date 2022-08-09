@@ -2,7 +2,9 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://root:123456@192.168.182.128:27017/ling
+      uri: mongodb://root:123456@192.168.186.128:27017/ling
+      # 副本集配置
+#      uri: mongodb://192.168.254.211:28017,192.168.254.211:28018,192.168.254.211:28019/test?connect=replicaSet&slaveOk=true&replicaSet=rs0&readPreference=secondary
 
 
 #systemLog:
