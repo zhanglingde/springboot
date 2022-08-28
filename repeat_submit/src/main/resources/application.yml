@@ -1,0 +1,10 @@
+spring:
+  redis:
+    database: 1
+    host: 121.37.185.192
+    port: 6379
+    password: zhangling03      # ????????
+    timeout: 6000ms  # ??????????
+
+server:
+  port: 8082
