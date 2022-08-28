@@ -69,18 +69,13 @@ public class RepeatSubmitInterceptor implements HandlerInterceptor {
      */
     private boolean isRepeatSubmit(HttpServletRequest request, RepeatSubmit repeatSubmit) {
         // 请求参数字符串
-        String requestParams = null;
+        String requestParams = "";
         if (request instanceof RepeatableReadRequestWrapper) {
             requestParams = getBodyString(request);
         }
         // 否则说明请求参数是 key-value 格式的
         if (StrUtil.isEmpty(requestParams)) {
             requestParams = JSONUtil.toJsonStr(request.getParameterMap());
-            // try {
-            //     nowParams = new ObjectMapper().writeValueAsString(request.getParameterMap());
-            // } catch (JsonProcessingException e) {
-            //     e.printStackTrace();
-            // }
         }
         Map<String, Object> nowDataMap = new HashMap<>();
         nowDataMap.put(REPEAT_PARAMS, requestParams);
