@@ -1,10 +1,10 @@
 package com.ling.service;
 
+import com.github.pagehelper.PageHelper;
 import com.ling.domain.Employee;
 import com.ling.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -21,8 +21,8 @@ public class EmployeeService {
      * @return
      */
     public Employee getOne(Employee condition){
-        Employee employee = employeeMapper.selectOne(condition);
-        return employee;
+        // Employee employee = employeeMapper.selectOne(condition);
+        return null;
     }
 
     /**
@@ -30,10 +30,15 @@ public class EmployeeService {
      * @param id @Id
      * @return
      */
-    public Employee queryEmployeeById(Integer id){
-
+    public Employee selectById(Integer id){
         Employee employee = employeeMapper.selectByPrimaryKey(id);
         return employee;
+    }
+
+    public List<Employee> selectList(){
+        PageHelper.startPage(1, 3);
+        List<Employee> employeeList = employeeMapper.selectList();
+        return employeeList;
     }
 
     /**
@@ -42,7 +47,8 @@ public class EmployeeService {
      * @return
      */
     public int insert(Employee employee){
-        return employeeMapper.insert(employee);
+        // return employeeMapper.insert(employee);
+        return 1;
     }
 
 
@@ -51,7 +57,7 @@ public class EmployeeService {
      * @param employee
      */
     public void updateByPrimaryKeySelective(Employee employee) {
-        employeeMapper.updateByPrimaryKeySelective(employee);
+        // employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
     /**
@@ -59,7 +65,7 @@ public class EmployeeService {
      * @param employee
      */
     public void removeEmployee(Employee employee) {
-        employeeMapper.delete(employee);
+        // employeeMapper.delete(employee);
     }
 
     /**
@@ -67,7 +73,7 @@ public class EmployeeService {
      * @param i
      */
     public void deleteByPrimaryKey(int i) {
-        employeeMapper.deleteByPrimaryKey(i);
+        // employeeMapper.deleteByPrimaryKey(i);
     }
 
     /**
@@ -75,7 +81,8 @@ public class EmployeeService {
      * @param example
      * @return
      */
-    public List<Employee> getEmpListByExample(Example example) {
-        return employeeMapper.selectByExample(example);
+    public List<Employee> getEmpListByExample(Employee employee) {
+        // return employeeMapper.selectByExample(example);
+        return null;
     }
 }

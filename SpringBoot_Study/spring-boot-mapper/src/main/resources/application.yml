@@ -8,9 +8,12 @@ spring:
 
 # mybatis\u914D\u7F6E
 mybatis:
+  # 指定全局配置文件的位置（使用xml配置mybatis）
+#  config-location: classpath:mybatis/mybatis-config.xml
+  # 指定mapper.xml映射文件的位置
+  mapper-locations: classpath:mapper/*.xml
   configuration:
-    map-underscore-to-camel-case: true        #
-
+    map-underscore-to-camel-case: true        # 开启陀峰映射
 
 
 logging:
