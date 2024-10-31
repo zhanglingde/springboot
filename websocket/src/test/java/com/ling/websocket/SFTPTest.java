@@ -35,6 +35,9 @@ public class SFTPTest {
             }
             System.out.println(content.toString());
             reader.close();
+            if ("销项.sql".equals(entry.getFilename())) {
+                client.getSftp().rm(path);
+            }
         }
         client.disconnect();
     }
