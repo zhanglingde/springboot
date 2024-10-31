@@ -74,8 +74,7 @@ class WebsocketApplicationTests {
                 parseMessage(bo);
                 System.out.println("JSONUtil.toJsonStr(vslContainerMessagesBo) = " + JSONUtil.toJsonStr(bo));
             }
-        }
-    }
+        }}
 
 
     /**
