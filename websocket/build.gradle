@@ -22,6 +22,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.github.mwiede/jsch
     implementation group: 'com.github.mwiede', name: 'jsch', version: '0.2.17'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    // https://mvnrepository.com/artifact/cn.hutool/hutool-all
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.8.32'
+
+
 
 
 }
